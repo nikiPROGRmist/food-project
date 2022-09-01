@@ -569,8 +569,8 @@ a {
   top: 0;
   left: 0;
   z-index: 1050;
-  display: none;
   width: 100%;
+  display: none;
   height: 100%;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.5);
@@ -623,4 +623,12 @@ a {
   display: block;
   width: 280px;
   margin: 0 auto;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal.hide {
+  display: none;
 }
