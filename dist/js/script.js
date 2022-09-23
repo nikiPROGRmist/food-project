@@ -261,7 +261,53 @@ window.addEventListener("DOMContentLoaded", () => {
     title: 'Меню "Постное"',
     description: "Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.",
     price: 13
-  }).render();
+  }).render(); // slider
+
+  const slideImg = document.querySelectorAll(".offer__slide"),
+        current = document.querySelector("#current"),
+        total = document.querySelector("#total"),
+        prew = document.querySelector(".offer__slider-prev"),
+        next = document.querySelector(".offer__slider-next");
+  let slideIndex = 1;
+  showSlide(slideIndex);
+
+  if (slideImg.length < 10) {
+    total.textContent = `0${slideImg.length}`;
+  } else {
+    total.textContent = slideImg.length;
+  }
+
+  function showSlide(n) {
+    if (n > slideImg.length) {
+      slideIndex = 1;
+    }
+
+    if (n < 1) {
+      slideIndex = slideImg.length;
+    }
+
+    slideImg.forEach(item => {
+      item.style.display = "none";
+    });
+    slideImg[slideIndex - 1].style.display = "block";
+
+    if (slideImg.length < 10) {
+      current.textContent = `0${slideIndex}`;
+    } else {
+      current.textContent = slideIndex;
+    }
+  }
+
+  function prewSlide(n) {
+    showSlide(slideIndex += n);
+  }
+
+  next.addEventListener("click", () => {
+    prewSlide(1);
+  });
+  prew.addEventListener("click", () => {
+    prewSlide(-1);
+  });
 });
 
 /***/ })
